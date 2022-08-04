@@ -1,0 +1,48 @@
+.list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  min-height: 72px;
+  padding: 1rem;
+  background: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+.list + .list {
+  margin-top: 0.75rem
+}
+
+.list input{
+  display:none;
+}
+
+.radioList{
+  padding-top: 5px;
+  cursor:pointer;
+}
+
+.textBox{
+  width: 100%;
+}
+
+.textList{
+  font-size: 0.875rem;
+  color: var(--gray-100);
+}
+
+.textChecked{
+  font-size: 0.875rem;
+  text-decoration:line-through;
+  color: var(--gray-300);
+}
+
+.btnTrash {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

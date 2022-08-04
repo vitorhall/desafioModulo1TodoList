@@ -1,0 +1,116 @@
+.inputBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+
+.inputGroup {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 736px;
+  margin-top: calc(54px - 82px);
+}
+
+.inputGroup input {
+  flex: 1;
+}
+
+.inputGroup botton {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputGroup input {
+  box-sizing: border-box;
+  background: var(--gray-500);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  height: 54px;
+  padding-left: 0.75rem;
+}
+::placeholder{
+  color: var(--gray-300);
+}
+
+.btnTask{
+  background: var(--blue-dark);
+  border-radius: 8px;
+  border: none;
+  height: 54px;
+  color: var(--white);
+  width: 5.12rem;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+
+  transition: filter 0.2s; 
+
+}
+
+.btnTask:hover{
+  filter: brightness(1.3);
+}
+
+.infoList{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.createdTask, .tasksDone{
+  color: var(--blue);
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  gap: 0.625rem;
+}
+
+.tasksDone{
+  color: var(--purple);
+}
+
+.countTask{
+  background: var(--gray-400);
+  border-radius: 8px;
+  padding: 2px 8px;
+  color: var(--white);
+}
+
+.emptyList{
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 4rem 1.5rem;
+}
+
+.contentBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contentBox img{
+  margin-bottom: 1rem;
+}
+
+.contentBox p{
+  font-weight: 700;
+}
+
+.contentBox span {
+  font-weight: 400;
+}
+
+
+
+
+
+
+
