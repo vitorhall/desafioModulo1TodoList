@@ -13,7 +13,7 @@ type TaskProps ={
 
 interface TaskPropsItem{
   task: TaskProps
-  key: number;
+  key: string;
   content: string;
   onDeleteTask: (id: string) => void;
   onCheckTask: (id:string, isComplete:boolean) => void;

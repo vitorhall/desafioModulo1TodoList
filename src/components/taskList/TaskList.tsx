@@ -89,10 +89,10 @@ export function TaskList() {
         </div>
         <div>
           <ul>
-            {newTask.map((taskItem, index) =>{
+            {newTask.map((taskItem) =>{
                 return(
                   <Task 
-                  key={index}
+                  key={taskItem.id}
                   content={taskItem.text}
                   onDeleteTask={DeleteTask} 
                   onCheckTask={handleCheckTask} 
