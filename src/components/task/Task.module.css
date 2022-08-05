@@ -13,12 +13,16 @@
   cursor: pointer;
 }
 
-.list + .list {
-  margin-top: 0.75rem
+.boxRadio{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: inherit;
+  width: 100%;
 }
 
-.list input{
-  display:none;
+.list + .list {
+  margin-top: 0.75rem
 }
 
 .radioList{

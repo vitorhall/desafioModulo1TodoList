@@ -3,17 +3,45 @@ import '../../global.css'
 import plus from '../../assets/plus.svg'
 import { Task } from '../task/Task';
 import clipboard from '../../assets/clipboard.svg'
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
-
+type TaskProps ={
+  id:string;
+  text:string;
+  isComplete:boolean;
+}
 
 export function TaskList() {
   const [newTextTask, setNewTextTask] = useState('');
-  const [newTask, setNewTask] = useState<any[]>([]);
+  const [newTask, setNewTask] = useState<TaskProps[]>([]);
+  const [completedTaskSize, setCompletedTaskSize] = useState(0)
+
+  useEffect(() => {
+    const countCompleted = newTask.filter((item) => item.isComplete === true);
+    setCompletedTaskSize(countCompleted.length)
+  }, [newTask])
   
+  function handleCheckTask(id:string, isComplete:boolean){
+    const filteredTask = newTask.map(task =>{
+      if(task.id === id){
+        task.isComplete = isComplete;
+      }
+      return task;
+    })
+    setNewTask(filteredTask);
+  }
+
+
   function handleNewTaskList(event:FormEvent) {
     event.preventDefault()
-    setNewTask([...newTask, newTextTask])
+
+    const NewItem = {
+      id: new Date().getTime().toString(),
+      isComplete: false,
+      text: newTextTask
+    } as TaskProps
+
+    setNewTask([...newTask, NewItem])
     setNewTextTask('')
   }
 
@@ -21,9 +49,9 @@ export function TaskList() {
     setNewTextTask(event.target.value);  
   }
 
-  function DeleteTask(taskToDelete: string){
+  function DeleteTask(idTaskToDelete: string){
     const taskwhithoutDeletedOne = newTask.filter(task =>{
-      return task !== taskToDelete
+      return task.id !== idTaskToDelete
     })
     setNewTask(taskwhithoutDeletedOne)
   }
@@ -55,19 +83,20 @@ export function TaskList() {
           <div className={styles.tasksDone}>
             Concluídas 
             <span className={styles.countTask}>
-              {newTask.length <= 0 ? 0 : `${newTask.length} de ${newTask.length}`  }
+              {newTask.length <= 0 ? 0 : `${completedTaskSize} de ${newTask.length}`  }
             </span>
           </div>
         </div>
         <div>
           <ul>
-            {newTask.map(taskText =>{
-              const taskId = taskText.length
+            {newTask.map((taskItem, index) =>{
                 return(
                   <Task 
-                  key={taskId}
-                  content={taskText}
-                  onDeleteTask={DeleteTask}  
+                  key={index}
+                  content={taskItem.text}
+                  onDeleteTask={DeleteTask} 
+                  onCheckTask={handleCheckTask} 
+                  task={taskItem}
                   />
                 )
             })}

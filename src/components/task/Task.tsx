@@ -4,33 +4,47 @@ import check from '../../assets/check.svg'
 import checked from '../../assets/checked.svg'
 import { useState } from 'react';
 
-interface TaskProps{
+type TaskProps ={
+  id:string;
+  text:string;
+  isComplete:boolean;
+}
+
+
+interface TaskPropsItem{
+  task: TaskProps
   key: number;
   content: string;
-  onDeleteTask: (taskText: string) => void;
+  onDeleteTask: (id: string) => void;
+  onCheckTask: (id:string, isComplete:boolean) => void;
   children?: string
 }
 
-export function Task({content, children, onDeleteTask}: TaskProps) {
+export function Task({content, onCheckTask, onDeleteTask, task}: TaskPropsItem) {
 
-  const [isComplete, setIsComplete] = useState(false)
 
   function handleDeleteTask(){
-    onDeleteTask(content)
+    onDeleteTask(task.id);
+  }
+
+  function handleCheckTask(){
+    onCheckTask(task.id, !task.isComplete)
   }
 
 
   return (
-      <li className={styles.list} onClick={()=> setIsComplete(!isComplete) }>
-        <div className={styles.radioList} >
-          {!isComplete ? (
-            <img src={check} alt="" />
-          ):(
-            <img src={checked} alt="" />
-          )}
-        </div>
-        <div className={styles.textBox}>
-          <p className={!isComplete ? styles.textList : styles.textChecked }>{content}</p>
+      <li className={styles.list} >
+        <div className={styles.boxRadio} onClick={handleCheckTask}>
+          <div className={styles.radioList} >
+            {!task.isComplete ? (
+              <img src={check} alt="" />
+            ):(
+              <img src={checked} alt="" />
+            )}
+          </div>
+          <div className={styles.textBox}>
+            <p className={!task.isComplete ? styles.textList : styles.textChecked }>{content}</p>
+          </div>
         </div>
         <button className={styles.btnTrash} onClick={handleDeleteTask}> 
           <Trash size={24} />
